@@ -11,15 +11,48 @@ function App() {
 	const [choice, setChoice] = useState('hide');
 
 	const Button = styled.button`
-		background-color: ${(props) =>
-			props.mode === 'selected' ? 'green' : '#eee'};
+		background-color: ${(props) => {
+			let color = '';
+			switch (props.article) {
+				case 'der':
+					color = 'blue';
+					break;
+				case 'die':
+					color = 'darkred';
+					break;
+				case 'das':
+					color = 'green';
+					break;
+				case 'hide':
+					color = '#ddd';
+					break;
+			}
+			return props.mode === 'selected' ? color : '#eee';
+		}};
 	`;
 
-  const Noun = styled.div`
-  background-color: ${(props) => props.mode==='selected' ? 'green' : '#444'};
-  padding: 5px;
-  text-align: center;
-`;
+	const Noun = styled.div`
+		background-color: ${(props) => {
+			let color = '';
+			switch (props.article) {
+				case 'der':
+					color = 'blue';
+					break;
+				case 'die':
+					color = 'darkred';
+					break;
+				case 'das':
+					color = 'green';
+					break;
+				case 'hide':
+					color = '#ddd';
+					break;
+			}
+			return props.mode === 'selected' ? color : '#444';
+		}};
+		padding: 5px;
+		text-align: center;
+	`;
 
 	useEffect(() => {
 		(async () => {
@@ -33,25 +66,58 @@ function App() {
 		<div className="App">
 			<h1>German Article Practice</h1>
 			<div className="buttons">
-        <Button mode={choice === 'der' ? 'selected' : 'unselected'} onClick={() => setChoice('der')}>der</Button>
+				<Button
+					mode={choice === 'der' ? 'selected' : 'unselected'}
+					article="der"
+					onClick={() => setChoice('der')}
+				>
+					der
+				</Button>
 
-				<Button mode={choice === 'die' ? 'selected' : 'unselected'}  onClick={() => setChoice('die')}>die</Button>
+				<Button
+					mode={choice === 'die' ? 'selected' : 'unselected'}
+					article="die"
+					onClick={() => setChoice('die')}
+				>
+					die
+				</Button>
 
-				<Button mode={choice === 'das' ? 'selected' : 'unselected'} onClick={() => setChoice('das')}>das</Button>
+				<Button
+					mode={choice === 'das' ? 'selected' : 'unselected'}
+					article="das"
+					onClick={() => setChoice('das')}
+				>
+					das
+				</Button>
 
-				<Button mode={choice === 'hide' ? 'selected' : 'unselected'} onClick={() => setChoice('hide')}>hide</Button>
+				<Button
+					mode={choice === 'hide' ? 'selected' : 'unselected'}
+					article="hide"
+					onClick={() => setChoice('hide')}
+				>
+					hide
+				</Button>
 			</div>
+
 			<div className="nouns">
 				{nouns.map((noun, index) => {
 					return (
-            <Noun mode={choice === noun.article ? 'selected' : 'unselected'}>
-            {choice === noun.article && <>{noun.article}</>}{' '}
-            {noun.singular}
-          </Noun>
+						<Noun
+							mode={
+								choice === noun.article
+									? 'selected'
+									: 'unselected'
+							}
+							article={noun.article}
+						>
+							{choice === noun.article && <>{noun.article}</>}{' '}
+							{noun.singular}
+						</Noun>
 					);
 				})}
 			</div>
 		</div>
 	);
 }
+
 export default App;
