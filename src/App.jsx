@@ -10,12 +10,13 @@ function App() {
 	const [nouns, setNouns] = useState([]);
 	const [choice, setChoice] = useState('hide');
 
-  const Button = styled.button`
-      background-color: ${(props) =>  props.mode === 'selected' ? 'green' : '#eee'}; 
-  `;
+	const Button = styled.button`
+		background-color: ${(props) =>
+			props.mode === 'selected' ? 'green' : '#eee'};
+	`;
 
   const Noun = styled.div`
-  background-color: #444;
+  background-color: ${(props) => props.mode==='selected' ? 'green' : '#444'};
   padding: 5px;
   text-align: center;
 `;
@@ -43,8 +44,9 @@ function App() {
 			<div className="nouns">
 				{nouns.map((noun, index) => {
 					return (
-            <Noun>
-            {noun.article} {noun.singular}
+            <Noun mode={choice === noun.article ? 'selected' : 'unselected'}>
+            {choice === noun.article && <>{noun.article}</>}{' '}
+            {noun.singular}
           </Noun>
 					);
 				})}
