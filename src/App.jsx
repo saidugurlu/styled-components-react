@@ -1,5 +1,7 @@
 import './App.scss'
 
+const url = 'https://edwardtanguay.netlify.app/share/germanNouns.json';
+
 function App() {
   return (
     <div className="App">
