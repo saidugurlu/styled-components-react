@@ -1,14 +1,24 @@
-import './App.scss'
+import { useEffect, useState } from 'react';
+import './App.scss';
+import axios from 'axios';
 
 const url = 'https://edwardtanguay.netlify.app/share/germanNouns.json';
 
 function App() {
-  return (
-    <div className="App">
-		<h1>Info Site</h1>
-		<p>Welcome to this site.</p>
-    </div>
-  )
+	const [nouns, setNouns] = useState([]);
+
+	useEffect(() => {
+		(async () => {
+			setNouns((await axios.get(url)).data);
+		})();
+	}, []);
+
+	return (
+		<div className="App">
+			<h1>German Article Practice</h1>
+      <p>There are {nouns.length} nouns.</p>
+		</div>
+	);
 }
 
 export default App;
