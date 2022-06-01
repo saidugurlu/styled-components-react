@@ -21,10 +21,10 @@ function App() {
 		<div className="App">
 			<h1>German Article Practice</h1>
       <div className="buttons">
-        <button style={{ backgroundColor: choice === 'der' ? 'green' : ''}} onClick={() => setChoice('der')}>der</button>
-        <button style={{ backgroundColor: choice === 'die' ? 'green' : ''}} onClick={() => setChoice('die')}>die</button>
-        <button style={{ backgroundColor: choice === 'das' ? 'green' : ''}} onClick={() => setChoice('das')}>das</button>
-        <button style={{ backgroundColor: choice === 'hide' ? 'green' : ''}} onClick={() => setChoice('hide')}>hide</button>
+        <button className={choice === 'der' ? 'active' : ''} onClick={() => setChoice('der')}>der</button>
+        <button onClick={() => setChoice('die')}>die</button>
+        <button onClick={() => setChoice('das')}>das</button>
+        <button onClick={() => setChoice('hide')}>hide</button>
       </div>
        <div className="nouns">
         {nouns.map((noun, index) => {
